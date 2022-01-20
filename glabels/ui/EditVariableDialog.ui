@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>469</width>
-    <height>348</height>
+    <height>407</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -141,17 +141,17 @@
       <item row="0" column="0">
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="1" column="2">
-         <widget class="QLineEdit" name="lineEdit"/>
+         <widget class="QLineEdit" name="padWidthEdit"/>
         </item>
         <item row="0" column="1">
-         <widget class="QCheckBox" name="checkBox">
+         <widget class="QCheckBox" name="padCheckBox">
           <property name="text">
            <string>Pad</string>
           </property>
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLabel" name="label_3">
+         <widget class="QLabel" name="padWidthLabel">
           <property name="text">
            <string>Pad Width:</string>
           </property>
@@ -183,8 +183,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>236</x>
-     <y>287</y>
+     <x>254</x>
+     <y>397</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -199,8 +199,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>304</x>
-     <y>287</y>
+     <x>322</x>
+     <y>397</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>
@@ -215,8 +215,8 @@
    <slot>onTypeComboChanged()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>252</x>
-     <y>70</y>
+     <x>321</x>
+     <y>53</y>
     </hint>
     <hint type="destinationlabel">
      <x>33</x>
@@ -232,7 +232,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>100</x>
-     <y>223</y>
+     <y>219</y>
     </hint>
     <hint type="destinationlabel">
      <x>97</x>
@@ -248,7 +248,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>440</x>
-     <y>223</y>
+     <y>219</y>
     </hint>
     <hint type="destinationlabel">
      <x>333</x>
@@ -264,7 +264,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>440</x>
-     <y>103</y>
+     <y>100</y>
     </hint>
     <hint type="destinationlabel">
      <x>393</x>
@@ -279,8 +279,8 @@
    <slot>onValueEditChanged()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>318</x>
-     <y>129</y>
+     <x>394</x>
+     <y>133</y>
     </hint>
     <hint type="destinationlabel">
      <x>459</x>
@@ -295,12 +295,28 @@
    <slot>onColorValueButtonChanged()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>406</x>
-     <y>114</y>
+     <x>439</x>
+     <y>133</y>
     </hint>
     <hint type="destinationlabel">
      <x>458</x>
      <y>122</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>padCheckBox</sender>
+   <signal>clicked()</signal>
+   <receiver>EditVariableDialog</receiver>
+   <slot>onPadCheckBoxChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>46</x>
+     <y>290</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>148</x>
+     <y>361</y>
     </hint>
    </hints>
   </connection>
@@ -312,5 +328,6 @@
   <slot>onStepSizeEditChanged()</slot>
   <slot>onNameEditChanged()</slot>
   <slot>onColorValueButtonChanged()</slot>
+  <slot>onPadCheckBoxChanged()</slot>
  </slots>
 </ui>

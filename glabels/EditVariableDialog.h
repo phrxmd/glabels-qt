@@ -60,6 +60,7 @@ namespace glabels
 		void onColorValueButtonChanged();
 		void onIncrementComboChanged();
 		void onStepSizeEditChanged();
+		void onPadCheckBoxChanged();
 
 		
 		/////////////////////////////////

@@ -161,6 +161,13 @@ namespace glabels
 		validateCurrentInputs();
 	}
 
+	///
+	///	padCheckBox Changed
+	///
+	void EditVariableDialog::onPadCheckBoxChanged()
+	{
+		updateControls();
+	}
 
 	///
 	/// update controls
@@ -196,9 +203,12 @@ namespace glabels
 		                 ( type == model::Variable::Type::FLOATING_POINT );
 		
 		incrementGroup->setVisible( isNumeric );
-		paddingGroup->setVisible( isNumeric );
 		stepSizeLabel->setEnabled( isNumeric && (increment != model::Variable::Increment::NEVER) );
 		stepSizeEdit->setEnabled( isNumeric && (increment != model::Variable::Increment::NEVER) );
+
+		paddingGroup->setVisible( isNumeric );
+		padWidthLabel->setEnabled( isNumeric && padCheckBox->isChecked() );
+		padWidthEdit->setEnabled( isNumeric && padCheckBox->isChecked() );
 
 		validateCurrentInputs();
 	}

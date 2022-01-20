@@ -196,6 +196,7 @@ namespace glabels
 		                 ( type == model::Variable::Type::FLOATING_POINT );
 		
 		incrementGroup->setVisible( isNumeric );
+		paddingGroup->setVisible( isNumeric );
 		stepSizeLabel->setEnabled( isNumeric && (increment != model::Variable::Increment::NEVER) );
 		stepSizeEdit->setEnabled( isNumeric && (increment != model::Variable::Increment::NEVER) );
 

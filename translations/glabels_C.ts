@@ -1155,6 +1155,14 @@
         <source>Color</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>True</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>False</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>VariablesView</name>
@@ -2319,6 +2327,10 @@
     </message>
     <message>
         <source>Value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pad</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

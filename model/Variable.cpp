@@ -30,6 +30,7 @@ namespace glabels
 			: mType(Type::STRING),
 			  mIncrement(Increment::NEVER),
 			  mStepSize("0"),
+			  mPad("False"),
 			  mIntegerValue(0),
 			  mIntegerStep(0),
 			  mFloatingPointValue(0),
@@ -43,12 +44,14 @@ namespace glabels
 		                    const QString&      name,
 		                    const QString&      initialValue,
 		                    Variable::Increment increment,
-		                    const QString&      stepSize )
+		                    const QString&      stepSize,
+		                    const bool&         pad )
 			: mType(type),
 			  mName(name),
 			  mInitialValue(initialValue),
 			  mIncrement(increment),
 			  mStepSize(stepSize),
+			  mPad(pad),
 			  mIntegerValue(0),
 			  mIntegerStep(0),
 			  mFloatingPointValue(0),
@@ -87,7 +90,13 @@ namespace glabels
 			return mStepSize;
 		}
 
-		
+
+		bool Variable::pad() const
+		{
+			return mPad;
+		}
+
+
 		void Variable::setInitialValue( const QString& value )
 		{
 			mInitialValue = value;
@@ -323,7 +332,13 @@ namespace glabels
 				return Increment::NEVER; // Default
 			}
 		}
-		
+
+
+		QString Variable::boolToI18nString( bool boolValue )
+		{
+			return boolValue ? tr("True") : tr("False");
+		}
+
 
 	}
 }

@@ -89,6 +89,7 @@ namespace glabels
 		colorValueButton->setColor( QColor( variable.initialValue() ) );
 		incrementCombo->setCurrentIndex( static_cast<int>(variable.increment()) );
 		stepSizeEdit->setText( variable.stepSize() );
+		padCheckBox->setChecked( variable.pad() );
 
 		updateControls();
 	}
@@ -103,7 +104,8 @@ namespace glabels
 		                        nameEdit->text(),
 		                        valueEdit->text(),
 		                        static_cast<model::Variable::Increment>(incrementCombo->currentIndex()),
-		                        stepSizeEdit->text() );
+		                        stepSizeEdit->text(),
+		                        padCheckBox->isChecked() );
 	}
 
 

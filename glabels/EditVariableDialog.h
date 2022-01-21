@@ -61,6 +61,7 @@ namespace glabels
 		void onIncrementComboChanged();
 		void onStepSizeEditChanged();
 		void onPadCheckBoxChanged();
+		void onPadWidthEditChanged();
 
 		
 		/////////////////////////////////

@@ -163,6 +163,7 @@ namespace glabels
 		validateCurrentInputs();
 	}
 
+
 	///
 	///	padCheckBox Changed
 	///
@@ -170,6 +171,16 @@ namespace glabels
 	{
 		updateControls();
 	}
+
+
+	///
+	///	padWidthEdit Changed
+	///
+	void EditVariableDialog::onPadWidthEditChanged()
+	{
+		updateControls();
+	}
+
 
 	///
 	/// update controls
@@ -212,6 +223,18 @@ namespace glabels
 		padWidthLabel->setEnabled( isNumeric && padCheckBox->isChecked() );
 		padWidthEdit->setEnabled( isNumeric && padCheckBox->isChecked() );
 
+		auto padValidator = new QIntValidator();
+		padValidator->setBottom(0);
+
+		if (isNumeric && padCheckBox->isChecked() )
+		{
+			padWidthEdit->setValidator( padValidator );
+		}
+		else
+		{
+			padWidthEdit->setValidator( nullptr );
+		}
+
 		validateCurrentInputs();
 	}
 
@@ -224,8 +247,9 @@ namespace glabels
 		bool hasValidIdentifier = nameEdit->hasAcceptableInput();
 		bool hasValidValue      = valueEdit->hasAcceptableInput();
 		bool hasValidStepSize   = stepSizeEdit->hasAcceptableInput();
+		bool hasValidPadWidth   = padWidthEdit->hasAcceptableInput();
 
-		bool isValid = hasValidIdentifier && hasValidValue && hasValidStepSize;
+		bool isValid = hasValidIdentifier && hasValidValue && hasValidStepSize && hasValidPadWidth;
 		buttonBox->button(QDialogButtonBox::Ok)->setEnabled( isValid );
 	}
 	

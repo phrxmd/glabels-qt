@@ -320,6 +320,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>padWidthEdit</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>EditVariableDialog</receiver>
+   <slot>onPadWidthEditChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>183</x>
+     <y>319</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>355</x>
+     <y>358</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onTypeComboChanged()</slot>
@@ -329,5 +345,6 @@
   <slot>onNameEditChanged()</slot>
   <slot>onColorValueButtonChanged()</slot>
   <slot>onPadCheckBoxChanged()</slot>
+  <slot>onPadWidthEditChanged()</slot>
  </slots>
 </ui>

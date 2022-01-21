@@ -531,10 +531,15 @@ namespace glabels
 			{
 				XmlUtil::setStringAttr( node, "increment",
 				                        Variable::incrementToIdString( v.increment() ) );
+				XmlUtil::setBoolAttr( node, "pad", v.pad() );
 				
 				if ( v.increment() != Variable::Increment::NEVER )
 				{
 					XmlUtil::setStringAttr( node, "stepSize", v.stepSize() );
+				}
+				if ( v.pad() )
+				{
+					XmlUtil::setStringAttr( node, "padWidth", v.padWidth() );
 				}
 			}
 		}

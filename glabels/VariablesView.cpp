@@ -35,6 +35,7 @@ namespace
 		I_COL_INCREMENT,
 		I_COL_STEP_SIZE,
 		I_COL_PAD,
+		I_COL_PAD_WIDTH,
 		I_COL_DUMMY,
 		N_COLS
 	};
@@ -79,6 +80,10 @@ namespace glabels
 		auto* paddingHeaderItem = new QTableWidgetItem( tr("Pad") );
 		paddingHeaderItem->setFlags( paddingHeaderItem->flags() ^ Qt::ItemIsEditable );
 		table->setHorizontalHeaderItem( I_COL_PAD, paddingHeaderItem );
+
+		auto* padWidthHeaderItem = new QTableWidgetItem( tr("Pad Width") );
+		padWidthHeaderItem->setFlags( padWidthHeaderItem->flags() ^ Qt::ItemIsEditable );
+		table->setHorizontalHeaderItem( I_COL_PAD_WIDTH, padWidthHeaderItem );
 
 		auto* dummyHeaderItem = new QTableWidgetItem();
 		dummyHeaderItem->setFlags( Qt::NoItemFlags );
@@ -132,7 +137,8 @@ namespace glabels
 		                   "0",
 		                   model::Variable::Increment::NEVER,
 		                   "1",
-		                   false );
+		                   false,
+		                   "0");
 		dialog.setVariable( v );
 		dialog.setWindowTitle( tr("Add Variable") );
 
@@ -237,6 +243,10 @@ namespace glabels
 			auto* padItem = new QTableWidgetItem( model::Variable::boolToI18nString(v.pad()) );
 			padItem->setFlags( padItem->flags() ^ Qt::ItemIsEditable );
 			table->setItem( iRow, I_COL_PAD, padItem );
+
+			auto* padWidthItem = new QTableWidgetItem( v.padWidth() );
+			padWidthItem->setFlags( padWidthItem->flags() ^ Qt::ItemIsEditable );
+			table->setItem( iRow, I_COL_PAD_WIDTH, padWidthItem );
 
 			table->showRow( iRow );
 			iRow++;

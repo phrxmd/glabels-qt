@@ -2333,6 +2333,10 @@
         <source>Pad</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Pad Width</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>glabels::barcode::Backends</name>

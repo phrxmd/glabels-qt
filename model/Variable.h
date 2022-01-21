@@ -61,7 +61,8 @@ namespace glabels
 			          const QString&  initialValue,
 			          Increment       increment = Increment::NEVER,
 			          const QString&  stepSize = "0",
-			          const bool&     pad = false );
+			          const bool&     pad = false,
+			          const QString&  padWidth = "0" );
 
 			virtual ~Variable() = default;
 
@@ -72,6 +73,7 @@ namespace glabels
 			Increment increment() const;
 			QString   stepSize() const;
 			bool      pad() const;
+			QString   padWidth() const;
 
 			void setInitialValue( const QString& value );
 
@@ -99,9 +101,11 @@ namespace glabels
 			Increment mIncrement;
 			QString   mStepSize;
 			bool      mPad;
+			QString   mPadWidth;
 
 			long long mIntegerValue;
 			long long mIntegerStep;
+			long long mIntegerPadWidth;
 			double    mFloatingPointValue;
 			double    mFloatingPointStep;
 

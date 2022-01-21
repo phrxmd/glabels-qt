@@ -90,6 +90,7 @@ namespace glabels
 		incrementCombo->setCurrentIndex( static_cast<int>(variable.increment()) );
 		stepSizeEdit->setText( variable.stepSize() );
 		padCheckBox->setChecked( variable.pad() );
+		padWidthEdit->setText( variable.padWidth() );
 
 		updateControls();
 	}
@@ -105,7 +106,8 @@ namespace glabels
 		                        valueEdit->text(),
 		                        static_cast<model::Variable::Increment>(incrementCombo->currentIndex()),
 		                        stepSizeEdit->text(),
-		                        padCheckBox->isChecked() );
+		                        padCheckBox->isChecked(),
+		                        padWidthEdit->text() );
 	}
 
 
@@ -178,7 +180,7 @@ namespace glabels
 	///
 	void EditVariableDialog::onPadWidthEditChanged()
 	{
-		updateControls();
+		validateCurrentInputs();
 	}
 
 

@@ -214,9 +214,23 @@ namespace glabels
 			case Type::STRING:
 				return mInitialValue;
 			case Type::INTEGER:
-				return QString::number( mIntegerValue );
+				{
+					auto numberStr = QString::number( mIntegerValue );
+					if (mPad)
+					{
+						return numberStr.rightJustified(mIntegerPadWidth, '0');
+					}
+					return numberStr;
+				}
 			case Type::FLOATING_POINT:
-				return QString::number( mFloatingPointValue, 'g', 15 );
+				{
+					auto numberStr = QString::number( mFloatingPointValue );
+					if (mPad)
+					{
+						return numberStr.rightJustified(mIntegerPadWidth, '0');
+					}
+					return numberStr;
+				}
 			case Type::COLOR:
 				return mInitialValue;
 			default:

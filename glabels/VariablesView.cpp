@@ -34,6 +34,8 @@ namespace
 		I_COL_VALUE,
 		I_COL_INCREMENT,
 		I_COL_STEP_SIZE,
+		I_COL_PAD,
+		I_COL_PAD_WIDTH,
 		I_COL_DUMMY,
 		N_COLS
 	};
@@ -74,6 +76,14 @@ namespace glabels
 		auto* stepSizeHeaderItem = new QTableWidgetItem( tr("Step Size") );
 		stepSizeHeaderItem->setFlags( stepSizeHeaderItem->flags() ^ Qt::ItemIsEditable );
 		table->setHorizontalHeaderItem( I_COL_STEP_SIZE, stepSizeHeaderItem );
+
+		auto* paddingHeaderItem = new QTableWidgetItem( tr("Pad") );
+		paddingHeaderItem->setFlags( paddingHeaderItem->flags() ^ Qt::ItemIsEditable );
+		table->setHorizontalHeaderItem( I_COL_PAD, paddingHeaderItem );
+
+		auto* padWidthHeaderItem = new QTableWidgetItem( tr("Pad Width") );
+		padWidthHeaderItem->setFlags( padWidthHeaderItem->flags() ^ Qt::ItemIsEditable );
+		table->setHorizontalHeaderItem( I_COL_PAD_WIDTH, padWidthHeaderItem );
 
 		auto* dummyHeaderItem = new QTableWidgetItem();
 		dummyHeaderItem->setFlags( Qt::NoItemFlags );
@@ -126,7 +136,9 @@ namespace glabels
 		                   "x",
 		                   "0",
 		                   model::Variable::Increment::NEVER,
-		                   "1" );
+		                   "1",
+		                   false,
+		                   "0");
 		dialog.setVariable( v );
 		dialog.setWindowTitle( tr("Add Variable") );
 
@@ -227,6 +239,14 @@ namespace glabels
 			auto* stepSizeItem = new QTableWidgetItem( v.stepSize() );
 			stepSizeItem->setFlags( stepSizeItem->flags() ^ Qt::ItemIsEditable );
 			table->setItem( iRow, I_COL_STEP_SIZE, stepSizeItem );
+
+			auto* padItem = new QTableWidgetItem( model::Variable::boolToI18nString(v.pad()) );
+			padItem->setFlags( padItem->flags() ^ Qt::ItemIsEditable );
+			table->setItem( iRow, I_COL_PAD, padItem );
+
+			auto* padWidthItem = new QTableWidgetItem( v.padWidth() );
+			padWidthItem->setFlags( padWidthItem->flags() ^ Qt::ItemIsEditable );
+			table->setItem( iRow, I_COL_PAD_WIDTH, padWidthItem );
 
 			table->showRow( iRow );
 			iRow++;

@@ -30,10 +30,13 @@ namespace glabels
 			: mType(Type::STRING),
 			  mIncrement(Increment::NEVER),
 			  mStepSize("0"),
+			  mPad("False"),
+			  mPadWidth("0"),
 			  mIntegerValue(0),
 			  mIntegerStep(0),
 			  mFloatingPointValue(0),
-			  mFloatingPointStep(0)
+			  mFloatingPointStep(0),
+			  mIntegerPadWidth(0)
 		{
 			// empty
 		}
@@ -43,16 +46,21 @@ namespace glabels
 		                    const QString&      name,
 		                    const QString&      initialValue,
 		                    Variable::Increment increment,
-		                    const QString&      stepSize )
+		                    const QString&      stepSize,
+		                    const bool&         pad,
+		                    const QString&      padWidth )
 			: mType(type),
 			  mName(name),
 			  mInitialValue(initialValue),
 			  mIncrement(increment),
 			  mStepSize(stepSize),
+			  mPad(pad),
+			  mPadWidth(padWidth),
 			  mIntegerValue(0),
 			  mIntegerStep(0),
 			  mFloatingPointValue(0),
-			  mFloatingPointStep(0)
+			  mFloatingPointStep(0),
+			  mIntegerPadWidth(0)
 		{
 			resetValue();
 		}
@@ -87,7 +95,19 @@ namespace glabels
 			return mStepSize;
 		}
 
-		
+
+		bool Variable::pad() const
+		{
+			return mPad;
+		}
+
+
+		QString Variable::padWidth() const
+		{
+			return mPadWidth;
+		}
+
+
 		void Variable::setInitialValue( const QString& value )
 		{
 			mInitialValue = value;
@@ -113,6 +133,8 @@ namespace glabels
 				// do nothing
 				break;
 			}
+
+			mIntegerPadWidth = mPadWidth.toLongLong();
 		}
 
 		
@@ -192,9 +214,23 @@ namespace glabels
 			case Type::STRING:
 				return mInitialValue;
 			case Type::INTEGER:
-				return QString::number( mIntegerValue );
+				{
+					auto numberStr = QString::number( mIntegerValue );
+					if (mPad)
+					{
+						return numberStr.rightJustified(mIntegerPadWidth, '0');
+					}
+					return numberStr;
+				}
 			case Type::FLOATING_POINT:
-				return QString::number( mFloatingPointValue, 'g', 15 );
+				{
+					auto numberStr = QString::number( mFloatingPointValue );
+					if (mPad)
+					{
+						return numberStr.rightJustified(mIntegerPadWidth, '0');
+					}
+					return numberStr;
+				}
 			case Type::COLOR:
 				return mInitialValue;
 			default:
@@ -323,7 +359,13 @@ namespace glabels
 				return Increment::NEVER; // Default
 			}
 		}
-		
+
+
+		QString Variable::boolToI18nString( bool boolValue )
+		{
+			return boolValue ? tr("True") : tr("False");
+		}
+
 
 	}
 }

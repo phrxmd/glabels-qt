@@ -89,6 +89,8 @@ namespace glabels
 		colorValueButton->setColor( QColor( variable.initialValue() ) );
 		incrementCombo->setCurrentIndex( static_cast<int>(variable.increment()) );
 		stepSizeEdit->setText( variable.stepSize() );
+		padCheckBox->setChecked( variable.pad() );
+		padWidthEdit->setText( variable.padWidth() );
 
 		updateControls();
 	}
@@ -103,7 +105,9 @@ namespace glabels
 		                        nameEdit->text(),
 		                        valueEdit->text(),
 		                        static_cast<model::Variable::Increment>(incrementCombo->currentIndex()),
-		                        stepSizeEdit->text() );
+		                        stepSizeEdit->text(),
+		                        padCheckBox->isChecked(),
+		                        padWidthEdit->text() );
 	}
 
 
@@ -163,6 +167,24 @@ namespace glabels
 
 
 	///
+	///	padCheckBox Changed
+	///
+	void EditVariableDialog::onPadCheckBoxChanged()
+	{
+		updateControls();
+	}
+
+
+	///
+	///	padWidthEdit Changed
+	///
+	void EditVariableDialog::onPadWidthEditChanged()
+	{
+		validateCurrentInputs();
+	}
+
+
+	///
 	/// update controls
 	///
 	void EditVariableDialog::updateControls()
@@ -199,6 +221,22 @@ namespace glabels
 		stepSizeLabel->setEnabled( isNumeric && (increment != model::Variable::Increment::NEVER) );
 		stepSizeEdit->setEnabled( isNumeric && (increment != model::Variable::Increment::NEVER) );
 
+		paddingGroup->setVisible( isNumeric );
+		padWidthLabel->setEnabled( isNumeric && padCheckBox->isChecked() );
+		padWidthEdit->setEnabled( isNumeric && padCheckBox->isChecked() );
+
+		auto padValidator = new QIntValidator();
+		padValidator->setBottom(0);
+
+		if (isNumeric && padCheckBox->isChecked() )
+		{
+			padWidthEdit->setValidator( padValidator );
+		}
+		else
+		{
+			padWidthEdit->setValidator( nullptr );
+		}
+
 		validateCurrentInputs();
 	}
 
@@ -211,8 +249,9 @@ namespace glabels
 		bool hasValidIdentifier = nameEdit->hasAcceptableInput();
 		bool hasValidValue      = valueEdit->hasAcceptableInput();
 		bool hasValidStepSize   = stepSizeEdit->hasAcceptableInput();
+		bool hasValidPadWidth   = padWidthEdit->hasAcceptableInput();
 
-		bool isValid = hasValidIdentifier && hasValidValue && hasValidStepSize;
+		bool isValid = hasValidIdentifier && hasValidValue && hasValidStepSize && hasValidPadWidth;
 		buttonBox->button(QDialogButtonBox::Ok)->setEnabled( isValid );
 	}
 	

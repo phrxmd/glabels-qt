@@ -790,11 +790,13 @@ namespace glabels
 			QString initialValue    = XmlUtil::getStringAttr( node, "initialValue", "0" );
 			QString incrementString = XmlUtil::getStringAttr( node, "increment", "never" );
 			QString stepSize        = XmlUtil::getStringAttr( node, "stepSize", "0" );
+			bool pad                = XmlUtil::getBoolAttr( node, "pad", "false" );
+			QString padWidth        = XmlUtil::getStringAttr( node, "padWidth", "0" );
 
 			auto type      = Variable::idStringToType( typeString );
 			auto increment = Variable::idStringToIncrement( incrementString );
 
-			Variable v( type, name, initialValue, increment, stepSize );
+			Variable v( type, name, initialValue, increment, stepSize, pad, padWidth );
 			model->variables()->addVariable( v );
 		}
 
